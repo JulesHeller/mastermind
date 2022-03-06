@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastermind</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="boutons">
+        <svg xmlns="http://www.w3.org/2000/svg" id="question" width="50" height="50" viewBox="0 0 24 24" fill="none"
+            stroke="rgb(189, 177, 177)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+
+        <svg id="reload" width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_2_2)">
+                <path
+                    d="M22.4 43.23C33.9041 43.23 43.23 33.9041 43.23 22.4C43.23 10.8959 33.9041 1.57 22.4 1.57C10.8959 1.57 1.57 10.8959 1.57 22.4C1.57 33.9041 10.8959 43.23 22.4 43.23Z"
+                    stroke="rgb(189, 177, 177)" stroke-width="3.12" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12.66 12.18V18.33H18.81" stroke="rgb(189, 177, 177)" stroke-width="3.12"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M13.23 27.03C14.0768 28.7005 15.3651 30.107 16.955 31.0969C18.5449 32.0868 20.3756 32.6221 22.2483 32.6448C24.1211 32.6675 25.9642 32.1766 27.5776 31.2255C29.191 30.2745 30.513 28.8995 31.4 27.25"
+                    stroke="rgb(189, 177, 177)" stroke-width="3.12" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M22.4 32.66C25.1203 32.6574 27.7284 31.5755 29.652 29.652C31.5755 27.7284 32.6574 25.1203 32.66 22.4V21.92C32.5521 19.6842 31.7161 17.545 30.2793 15.8286C28.8425 14.1122 26.8838 12.9128 24.7019 12.4132C22.52 11.9136 20.2345 12.1413 18.194 13.0615C16.1536 13.9817 14.47 15.5439 13.4 17.51"
+                    stroke="rgb(189, 177, 177)" stroke-width="3.12" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="film"></div>
+
+    <div class="regles">
+        <svg xmlns="http://www.w3.org/2000/svg" id="croix" width="50" height="50" viewBox="0 0 25 25" fill="none"
+            stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+
+        <div>
+            <h1> Mastermind </h1>
+
+            <p> Devinez une combinaison de 4 couleurs en cliquant sur les jetons à gauche. </p>
+
+            <p>
+                Déduisez la combinaison de couleurs en regardant les petits jetons qui apparaissent à droite après
+                chaque essai.
+            </p>
+
+            <div class="container">
+                <div class="couleursEx">
+                    <div class="posEx" style="background: black"></div>
+                    <div class="posEx"></div>
+                    <div class="posEx"></div>
+                    <div class="posEx"></div>
+                </div>
+
+                <p>
+                    Un jeton <b>noir</b> indique une couleur placée au bon endroit.
+                </p>
+            </div>
+
+            <div class="container">
+                <div class="couleursEx">
+                    <div class="posEx" style="background: white"></div>
+                    <div class="posEx"></div>
+                    <div class="posEx"></div>
+                    <div class="posEx"></div>
+                </div>
+
+                <p>
+                    Un jeton <b>blanc</b> indique une couleur présente dans la combinaison à deviner, mais mal placée.
+                </p>
+            </div>
+
+            <div class="container">
+                <div class="couleursEx">
+                    <div class="posEx"></div>
+                    <div class="posEx"></div>
+                    <div class="posEx"></div>
+                    <div class="posEx"></div>
+                </div>
+
+                <p>
+                    Un emplacement <b>vide</b> indique une couleur absente dans la combinaison.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="masterContainer">
+        <div class="couleurs">
+            <div class="couleur J" id="J" ondragstart="return false;" ondrop="return false;"></div>
+            <div class="couleur R" id="R" ondragstart="return false;" ondrop="return false;"></div>
+            <div class="couleur V" id="V" ondragstart="return false;" ondrop="return false;"></div>
+            <div class="couleur B" id="B" ondragstart="return false;" ondrop="return false;"></div>
+            <div class="back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                    stroke="rgb(189, 177, 177)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                    <line x1="18" y1="9" x2="12" y2="15"></line>
+                    <line x1="12" y1="9" x2="18" y2="15"></line>
+                </svg>
+            </div>
+        </div>
+
+        <div class="ligne ligne1">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp1">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+        <div class="ligne ligne2">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp2">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+        <div class="ligne ligne3">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp3">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+        <div class="ligne ligne4">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp4">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+        <div class="ligne ligne5">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp5">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+        <div class="ligne ligne6">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp6">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+        <div class="ligne ligne7">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp7">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+        <div class="ligne ligne8">
+            <div class="trou trou1"></div>
+            <div class="trou trou2"></div>
+            <div class="trou trou3"></div>
+            <div class="trou trou4"></div>
+
+            <div class="lp lp8">
+                <div class="pos pos1"></div>
+                <div class="pos pos2"></div>
+                <div class="pos pos3"></div>
+                <div class="pos pos4"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="victoire hidden">
+        <div class="vicDiv">
+            <h2> Bravo ! </h2>
+
+            <p> Vous avez trouvé la combinaison ! </p>
+
+            <svg xmlns="http://www.w3.org/2000/svg" id="croix2" width="50" height="50" viewBox="0 0 25 25" fill="none"
+                stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
