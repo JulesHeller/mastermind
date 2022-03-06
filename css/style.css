@@ -188,6 +188,8 @@ body {
     background: white;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.075);
 
+    border-radius: 10px;
+
     z-index: 10;
 }
 
