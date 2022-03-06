@@ -107,7 +107,7 @@ function start() {
         }
     }
 
-    console.log(combi);
+    // console.log(combi);
 
     car1 = combi.charAt(0);
     car2 = combi.charAt(1);
