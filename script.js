@@ -9,7 +9,8 @@ function rules() {
 document.querySelector("#croix2").addEventListener("click", closeVic)
 
 function closeVic() {
-    document.querySelector(".victoire").classList.toggle("hidden")
+    document.querySelector(".victoire").classList.toggle("hidden");
+    document.querySelector(".film").classList.toggle("hidden");
 }
 
 document.querySelector("#reload").addEventListener("click", reload)
@@ -131,6 +132,9 @@ function addCouleur() {
                 })
 
                 hasWon = true;
+
+                document.querySelector(".victoire").classList.remove("hidden");
+                document.querySelector(".film").classList.remove("hidden");
             } else {
                 comparer();
             }
