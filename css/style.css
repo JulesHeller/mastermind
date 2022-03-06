@@ -68,7 +68,8 @@ body {
     background: rgb(216, 211, 211);
 }
 
-.trou {
+.trou,
+.trouEx {
     border-radius: 50%;
     height: 60px;
     width: 60px;
@@ -174,7 +175,8 @@ body {
 }
 
 .regles, 
-.victoire {
+.victoire,
+.defaite {
     position: fixed;
 
     display: flex;
@@ -196,13 +198,19 @@ body {
     z-index: 10;
 }
 
+.victoire p,
+.defaite p {
+    text-align: center;
+}
+
 .regles>div {
     padding: 20px 0;
     width: 400px;
 }
 
 #croix,
-#croix2 {
+#croix2,
+#croix3 {
     position: absolute;
 
     top: 10px;
@@ -292,7 +300,8 @@ h1, h2, p, b {
     width: 500px !important;
 }
 
-.vicDiv {
+.vicDiv,
+.vicDef {
     text-align: center;
     padding: 20px 0;
 }
@@ -301,4 +310,10 @@ h2 {
     font-size: 2em;
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
+}
+
+.containerEx {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }

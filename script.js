@@ -13,6 +13,13 @@ function closeVic() {
     document.querySelector(".film").classList.toggle("hidden");
 }
 
+document.querySelector("#croix3").addEventListener("click", closeDef)
+
+function closeDef() {
+    document.querySelector(".defaite").classList.toggle("hidden");
+    document.querySelector(".film").classList.toggle("hidden");
+}
+
 document.querySelector("#reload").addEventListener("click", reload)
 
 function reload() {
@@ -98,12 +105,17 @@ function start() {
         }
     }
 
-    // console.log(combi);
+    console.log(combi);
 
     car1 = combi.charAt(0);
     car2 = combi.charAt(1);
     car3 = combi.charAt(2);
     car4 = combi.charAt(3);
+
+    document.querySelector(".trouEx1").classList.add(car1);
+    document.querySelector(".trouEx2").classList.add(car2);
+    document.querySelector(".trouEx3").classList.add(car3);
+    document.querySelector(".trouEx4").classList.add(car4);
 }
 
 document.querySelectorAll(".couleur").forEach(e => {
@@ -111,34 +123,39 @@ document.querySelectorAll(".couleur").forEach(e => {
 })
 
 function addCouleur() {
-    if (!hasWon) {
-        let thisCouleur = this.getAttribute("id");
-        document.querySelector(".ligne" + ligne + " .trou" + numero).classList.add(thisCouleur);
-
-        combiGuess += thisCouleur;
-
-        if (numero < 4) {
-            numero++;
-
-            // console.log(combiGuess);
-        } else {
-            numero = 1;
-
-            // console.log(combiGuess);
-            
-            if (combiGuess == combi) {
-                document.querySelectorAll(".lp" + ligne + " *").forEach(e => {
-                    e.style.background = "black";
-                })
-
-                hasWon = true;
-
-                document.querySelector(".victoire").classList.remove("hidden");
-                document.querySelector(".film").classList.remove("hidden");
+    if (ligne != 9) {
+        if (!hasWon) {
+            let thisCouleur = this.getAttribute("id");
+            document.querySelector(".ligne" + ligne + " .trou" + numero).classList.add(thisCouleur);
+    
+            combiGuess += thisCouleur;
+    
+            if (numero < 4) {
+                numero++;
+    
+                // console.log(combiGuess);
             } else {
-                comparer();
+                numero = 1;
+    
+                // console.log(combiGuess);
+                
+                if (combiGuess == combi) {
+                    document.querySelectorAll(".lp" + ligne + " *").forEach(e => {
+                        e.style.background = "black";
+                    })
+    
+                    hasWon = true;
+    
+                    document.querySelector(".victoire").classList.remove("hidden");
+                    document.querySelector(".film").classList.remove("hidden");
+                } else {
+                    comparer();
+                }
             }
         }
+    } else {
+        document.querySelector(".defaite").classList.remove("hidden");
+        document.querySelector(".film").classList.remove("hidden");
     }
 }
 

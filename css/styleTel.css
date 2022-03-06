@@ -14,5 +14,8 @@ body {
 }
 
 .masterContainer {
-    transform: translateX(-30px);
+    position: absolute !important;
+    top: 47%;
+    left: 50%;
+    transform: translate(calc(-50% - 30px), -50%);
 }
