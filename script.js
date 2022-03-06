@@ -24,6 +24,7 @@ document.querySelector("#reload").addEventListener("click", reload)
 
 function reload() {
     hasWon = false;
+    hasLost = false;
 
     this.classList.add("spin")
     start();
@@ -66,6 +67,7 @@ var pos3 = "";
 var pos4 = "";
 
 var hasWon = false;
+var hasLost = false;
 
 start();
 function start() {
@@ -123,39 +125,38 @@ document.querySelectorAll(".couleur").forEach(e => {
 })
 
 function addCouleur() {
-    if (ligne != 9) {
-        if (!hasWon) {
-            let thisCouleur = this.getAttribute("id");
-            document.querySelector(".ligne" + ligne + " .trou" + numero).classList.add(thisCouleur);
-    
-            combiGuess += thisCouleur;
-    
-            if (numero < 4) {
-                numero++;
-    
-                // console.log(combiGuess);
+    if (!hasWon && !hasLost) {
+        let thisCouleur = this.getAttribute("id");
+        document.querySelector(".ligne" + ligne + " .trou" + numero).classList.add(thisCouleur);
+
+        combiGuess += thisCouleur;
+
+        if (numero < 4) {
+            numero++;
+
+            // console.log(combiGuess);
+        } else {
+            numero = 1;
+
+            // console.log(combiGuess);
+
+            if (combiGuess == combi) {
+                document.querySelectorAll(".lp" + ligne + " *").forEach(e => {
+                    e.style.background = "black";
+                })
+
+                hasWon = true;
+
+                document.querySelector(".victoire").classList.remove("hidden");
+                document.querySelector(".film").classList.remove("hidden");
             } else {
-                numero = 1;
-    
-                // console.log(combiGuess);
-                
-                if (combiGuess == combi) {
-                    document.querySelectorAll(".lp" + ligne + " *").forEach(e => {
-                        e.style.background = "black";
-                    })
-    
-                    hasWon = true;
-    
-                    document.querySelector(".victoire").classList.remove("hidden");
-                    document.querySelector(".film").classList.remove("hidden");
-                } else {
-                    comparer();
+                if (ligne == 8) {
+                    hasLost = true;
                 }
+
+                comparer();
             }
         }
-    } else {
-        document.querySelector(".defaite").classList.remove("hidden");
-        document.querySelector(".film").classList.remove("hidden");
     }
 }
 
@@ -174,7 +175,7 @@ function removeCouleur() {
         // console.log(combiGuess);
     } else {
         document.querySelector(".back").classList.add("wobble");
-        
+
         setTimeout(() => {
             document.querySelector(".back").classList.remove("wobble");
         }, 500)
@@ -308,23 +309,28 @@ function comparer() {
         document.querySelector(".lp" + ligne + " .pos4").style.background = "white";
     }
 
+    if (hasLost) {
+        document.querySelector(".defaite").classList.remove("hidden");
+        document.querySelector(".film").classList.remove("hidden");
+    } else {
+        ligne++;
+
+        //                                    //
+        // Reinitialisation pour chaque ligne //
+        //                                    //
+
+        combiGuess = "";
+        guess1 = "";
+        guess2 = "";
+        guess3 = "";
+        guess4 = "";
+        guessLength = 0;
+        positions = "";
+        car1c = car1;
+        car2c = car2;
+        car3c = car3;
+        car4c = car4;
+    }
+
     // console.log(positions);
-
-    ligne++;
-
-    //                                    //
-    // Reinitialisation pour chaque ligne //
-    //                                    //
-
-    combiGuess = "";
-    guess1 = "";
-    guess2 = "";
-    guess3 = "";
-    guess4 = "";
-    guessLength = 0;
-    positions = "";
-    car1c = car1;
-    car2c = car2;
-    car3c = car3;
-    car4c = car4;
 }

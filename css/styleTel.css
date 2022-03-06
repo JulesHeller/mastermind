@@ -3,15 +3,6 @@ body {
     overflow-x: hidden;
 }
 
-.regles {
-    top: 100px;
-    left: 100px;
-    right: 100px;
-    transform: translate(0);
-
-    height: unset;
-    width: unset;
-}
 
 .masterContainer {
     position: absolute !important;
