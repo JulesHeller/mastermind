@@ -1,10 +1,50 @@
+/* .boutons {
+    margin: 15px 0;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+body {
+    zoom: 40%;
+    overflow-x: hidden;
+}
+
 .regles {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
+    top: 100px;
+    left: 100px;
+    right: 100px;
     transform: translate(0);
 
     height: unset;
     width: unset;
 }
+
+/* .masterContainer {
+    margin: 80px auto;
+    width: 200px;
+}
+
+.trou,
+.couleur,
+.back {
+    height: 40px;
+    width: 40px;
+}
+
+.couleurs {
+    flex-direction: row;
+    top: 0;
+
+    position: fixed;
+    left: unset;
+    transform: translate(0);
+}
+
+.back svg { 
+    width: 25px;
+    height: 25px;
+}
+
+.lp {
+    transform: translate(140%, -50%);
+} */

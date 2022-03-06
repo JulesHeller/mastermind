@@ -81,6 +81,9 @@ body {
 }
 
 .couleurs {
+    display: flex;
+    flex-direction: column;
+
     position: absolute;
     top: 50%;
     left: -120px;
