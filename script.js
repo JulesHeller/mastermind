@@ -72,10 +72,7 @@ var hasLost = false;
 start();
 function start() {
     document.querySelectorAll(".trou").forEach(e => {
-        e.classList.remove("J")
-        e.classList.remove("R")
-        e.classList.remove("V")
-        e.classList.remove("B")
+        e.classList.remove("R", "V", "B", "J")
     })
 
     document.querySelectorAll(".pos").forEach(e => {
@@ -113,6 +110,11 @@ function start() {
     car2 = combi.charAt(1);
     car3 = combi.charAt(2);
     car4 = combi.charAt(3);
+
+    document.querySelector(".trouEx1").classList.remove("R", "V", "B", "J")
+    document.querySelector(".trouEx2").classList.remove("R", "V", "B", "J")
+    document.querySelector(".trouEx3").classList.remove("R", "V", "B", "J")
+    document.querySelector(".trouEx4").classList.remove("R", "V", "B", "J")
 
     document.querySelector(".trouEx1").classList.add(car1);
     document.querySelector(".trouEx2").classList.add(car2);
@@ -166,10 +168,7 @@ function removeCouleur() {
     if (numero != 1) {
         numero--;
 
-        document.querySelector(".ligne" + ligne + " .trou" + numero).classList.remove("J");
-        document.querySelector(".ligne" + ligne + " .trou" + numero).classList.remove("R");
-        document.querySelector(".ligne" + ligne + " .trou" + numero).classList.remove("V");
-        document.querySelector(".ligne" + ligne + " .trou" + numero).classList.remove("B");
+        document.querySelector(".ligne" + ligne + " .trou" + numero).classList.remove("R", "V", "B", "J");
 
         combiGuess = combiGuess.slice(0, -1);
         // console.log(combiGuess);
